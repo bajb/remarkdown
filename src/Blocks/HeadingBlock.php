@@ -3,7 +3,7 @@ namespace Packaged\Remarkdown\Blocks;
 
 use Packaged\Remarkdown\Rules\RuleEngine;
 
-class HeadingBlock implements BlockInterface
+class HeadingBlock implements BlockInterface, BlockStartCodes
 {
   protected $_lines = [];
   protected $_level;
@@ -24,4 +24,10 @@ class HeadingBlock implements BlockInterface
   {
     return $ruleEngine->parse('<h' . $this->_level . '>' . implode("\n", $this->_lines) . '</h' . $this->_level . '>');
   }
+
+  public function startCodes(): array
+  {
+    return ['# ', '##',];
+  }
+
 }

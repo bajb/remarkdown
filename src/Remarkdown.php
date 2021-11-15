@@ -2,7 +2,13 @@
 namespace Packaged\Remarkdown;
 
 use Packaged\Remarkdown\Blocks\BlockEngine;
-use Packaged\Remarkdown\Rules\AsciimojiRule;
+use Packaged\Remarkdown\Blocks\BlockQuote;
+use Packaged\Remarkdown\Blocks\HeadingBlock;
+use Packaged\Remarkdown\Blocks\HintBlock;
+use Packaged\Remarkdown\Blocks\OrderedListBlock;
+use Packaged\Remarkdown\Blocks\ParagraphBlock;
+use Packaged\Remarkdown\Blocks\TableBlock;
+use Packaged\Remarkdown\Blocks\UnorderedListBlock;
 use Packaged\Remarkdown\Rules\BoldText;
 use Packaged\Remarkdown\Rules\CheckboxRule;
 use Packaged\Remarkdown\Rules\DeletedText;
@@ -20,12 +26,13 @@ class Remarkdown
 {
   /** @var \Packaged\Remarkdown\Rules\RuleEngine */
   protected $_ruleEngine;
+  /** @var \Packaged\Remarkdown\Blocks\BlockEngine */
   protected $_blockEngine;
 
   public function __construct()
   {
-    $this->_ruleEngine = $this->createEngine();
-    $this->_blockEngine = new BlockEngine($this->_ruleEngine);
+    $this->_ruleEngine = $this->createRuleEngine();
+    $this->_blockEngine = $this->createBlockEngine($this->_ruleEngine);
   }
 
   public function parse($text)
@@ -35,13 +42,12 @@ class Remarkdown
     return $this->_ruleEngine->parse(implode("", $blocks));
   }
 
-  public function createEngine(): RuleEngine
+  public function createRuleEngine(): RuleEngine
   {
     $engine = new RuleEngine();
     $engine->registerRule(new MonospacedText());
     $engine->registerRule(new UnderlinedText());//must be before bold
 
-    $engine->registerRule(new AsciimojiRule());
     $engine->registerRule(new TypographicSymbolRule());
     $engine->registerRule(new EmojiRule());
     $engine->registerRule(new KeyboardKey());
@@ -53,6 +59,21 @@ class Remarkdown
     $engine->registerRule(new HighlightText());
 
     $engine->registerRule(new CheckboxRule());
+
+    return $engine;
+  }
+
+  public function createBlockEngine(RuleEngine $ruleEngine): BlockEngine
+  {
+    $engine = new BlockEngine($ruleEngine);
+
+    $engine->registerBlock(new TableBlock());
+    $engine->registerBlock(new UnorderedListBlock());
+    $engine->registerBlock(new OrderedListBlock());
+    $engine->registerBlock(new BlockQuote());
+    $engine->registerBlock(new HeadingBlock());
+    $engine->registerBlock(new HintBlock());
+    $engine->registerBlock(new ParagraphBlock());
 
     return $engine;
   }

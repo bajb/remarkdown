@@ -3,7 +3,7 @@ namespace Packaged\Remarkdown\Blocks;
 
 use Packaged\Remarkdown\Rules\RuleEngine;
 
-class TableBlock implements BlockInterface
+class TableBlock implements BlockInterface, BlockStartCodes
 {
   protected $_headerSet = false;
   protected $_rows = ['th' => [], 'td' => []];
@@ -55,4 +55,10 @@ class TableBlock implements BlockInterface
     $table .= '</table>';
     return $ruleEngine->parse($table);
   }
+
+  public function startCodes(): array
+  {
+    return ['| '];
+  }
+
 }

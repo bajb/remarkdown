@@ -3,7 +3,7 @@ namespace Packaged\Remarkdown\Blocks;
 
 use Packaged\Remarkdown\Rules\RuleEngine;
 
-class OrderedListBlock implements BlockInterface
+class OrderedListBlock implements BlockInterface, BlockStartCodes
 {
   protected $_lines = [];
 
@@ -22,4 +22,31 @@ class OrderedListBlock implements BlockInterface
     $lines = $blockEngine->parseLines($this->_lines, true);
     return $ruleEngine->parse('<ol><li>' . implode("</li><li>", $lines) . '</li></ol>');
   }
+
+  public function startCodes(): array
+  {
+    return [
+      "0 ",
+      "1 ",
+      "2 ",
+      "3 ",
+      "4 ",
+      "5 ",
+      "6 ",
+      "7 ",
+      "8 ",
+      "9 ",
+      "0.",
+      "1.",
+      "2.",
+      "3.",
+      "4.",
+      "5.",
+      "6.",
+      "7.",
+      "8.",
+      "9.",
+    ];
+  }
+
 }

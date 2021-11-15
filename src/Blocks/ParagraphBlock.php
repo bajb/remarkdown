@@ -3,7 +3,7 @@ namespace Packaged\Remarkdown\Blocks;
 
 use Packaged\Remarkdown\Rules\RuleEngine;
 
-class ParagraphBlock implements BlockInterface
+class ParagraphBlock implements BlockInterface, BlockLineMatcher
 {
   protected $_lines = [];
 
@@ -21,4 +21,14 @@ class ParagraphBlock implements BlockInterface
   {
     return '<p>' . $ruleEngine->parse(implode("\n<br/>", $this->_lines)) . '</p>';
   }
+
+  public function match(string $line, bool $nested): ?BlockInterface
+  {
+    if(!$nested && preg_match('/[a-zA-Z0-9_*`!~[:(]/', $line[0]))
+    {
+      return new ParagraphBlock();
+    }
+    return null;
+  }
+
 }

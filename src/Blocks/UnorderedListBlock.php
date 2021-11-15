@@ -3,7 +3,7 @@ namespace Packaged\Remarkdown\Blocks;
 
 use Packaged\Remarkdown\Rules\RuleEngine;
 
-class UnorderedListBlock implements BlockInterface
+class UnorderedListBlock implements BlockInterface, BlockStartCodes
 {
   protected $_lines = [];
 
@@ -22,4 +22,10 @@ class UnorderedListBlock implements BlockInterface
     $lines = $blockEngine->parseLines($this->_lines, true);
     return $ruleEngine->parse('<ul><li>' . implode("</li><li>", $lines) . '</li></ul>');
   }
+
+  public function startCodes(): array
+  {
+    return ['- ', '* ', '+ '];
+  }
+
 }

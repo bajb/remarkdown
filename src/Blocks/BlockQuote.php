@@ -3,7 +3,7 @@ namespace Packaged\Remarkdown\Blocks;
 
 use Packaged\Remarkdown\Rules\RuleEngine;
 
-class BlockQuote implements BlockInterface
+class BlockQuote implements BlockInterface, BlockStartCodes
 {
   protected $_lines = [];
 
@@ -23,4 +23,10 @@ class BlockQuote implements BlockInterface
     $lines = $blockEngine->parseLines($this->_lines, true);
     return '<blockquote>' . implode("<br/>", $lines) . '</blockquote>';
   }
+
+  public function startCodes(): array
+  {
+    return ['> ', '>>'];
+  }
+
 }

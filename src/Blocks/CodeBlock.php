@@ -3,7 +3,7 @@ namespace Packaged\Remarkdown\Blocks;
 
 use Packaged\Remarkdown\Rules\RuleEngine;
 
-class CodeBlock implements BlockInterface
+class CodeBlock implements BlockInterface, BlockStartCodes
 {
   protected $_openStyle;
   protected $_lines = [];
@@ -36,5 +36,10 @@ class CodeBlock implements BlockInterface
   public function complete(BlockEngine $blockEngine, RuleEngine $ruleEngine): string
   {
     return '<code>' . htmlentities(implode("\n", $this->_lines)) . '</code>';
+  }
+
+  public function startCodes(): array
+  {
+    return ['``'];
   }
 }
