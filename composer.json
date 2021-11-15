@@ -1,0 +1,8 @@
+{
+  "name": "packaged/remarkdown",
+  "autoload": {
+    "psr-4": {
+      "Packaged\\Remarkdown\\": "src"
+    }
+  }
+}

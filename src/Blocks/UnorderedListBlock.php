@@ -1,0 +1,25 @@
+<?php
+namespace Packaged\Remarkdown\Blocks;
+
+use Packaged\Remarkdown\Rules\RuleEngine;
+
+class UnorderedListBlock implements BlockInterface
+{
+  protected $_lines = [];
+
+  public function addNewLine(string $line)
+  {
+    if(empty($line))
+    {
+      return false;
+    }
+    $this->_lines[] = substr($line, 2);
+    return true;
+  }
+
+  public function complete(BlockEngine $blockEngine, RuleEngine $ruleEngine): string
+  {
+    $lines = $blockEngine->parseLines($this->_lines, true);
+    return $ruleEngine->parse('<ul><li>' . implode("</li><li>", $lines) . '</li></ul>');
+  }
+}
