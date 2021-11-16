@@ -9,8 +9,30 @@ I just love **bold text**. I just love __bold text__. Love**is**bold
 
 Italicized text is the *cat's meow*. Italicized text is the _cat's meow_. A*cat*meow
 
+
 [ ] Something to do
 [x] Already done
+
+{TABGROUP}
+
+{TAB:MAC, name=Mac, default, icon=fa-apple}
+Mac Content
+
+{ENDTAB}
+
+{TAB, name=Windows}
+
+Windows Content
+
+{ENDTAB}
+
+{TAB, name=Web Browser}
+
+Web browser content
+
+{ENDTAB}
+
+{ENDTABGROUP}
 
 WARNING: This is a warning
 
@@ -26,8 +48,7 @@ IMPORTANT: This is an important notice
 
 (IMPORTANT) This is an important notice
 
-NOTE| This is a multi line note
-NOTE| that continues to the next line
+NOTE| This is a multi line note NOTE| that continues to the next line
 
 | Fruit  | Color  | Price   | Peel?
 | -----  | -----  | -----   | -----
@@ -72,10 +93,6 @@ This text is ***really important***.
 
 ###### h6 Heading
 
-afraid    : :(afraid):
-angry     : :(angry):
-pooh      : :(pooh):
-
 :+1: :smile: :eyes:
 
 (c) (C) (r) (R) (tm) (TM) (p) (P) +-
@@ -111,8 +128,7 @@ function f() {
 }
 ```
 
-{key m}
-{key ctrl}
+{key m} {key ctrl}
 
 6. First item
 7. Second item

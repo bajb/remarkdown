@@ -35,6 +35,16 @@ class BlockEngine
 
   public function parseLines(array $lines, $subBlock = false)
   {
+    $newLines = [];
+    foreach($this->parseBlocks($lines, $subBlock) as $block)
+    {
+      $newLines[] = $block instanceof BlockInterface ? $block->complete($this, $this->_engine) : $block;
+    }
+    return $newLines;
+  }
+
+  public function parseBlocks(array $lines, $subBlock = false)
+  {
     $blocks = [];
     $currentBlock = null;
     foreach($lines as $line)
@@ -55,7 +65,7 @@ class BlockEngine
         }
         else
         {
-          $blocks[] = $currentBlock->complete($this, $this->_engine);
+          $blocks[] = $currentBlock;
           $currentBlock = false;
         }
       }
@@ -79,7 +89,7 @@ class BlockEngine
     }
     if($currentBlock !== null)
     {
-      $blocks[] = $currentBlock->complete($this, $this->_engine);
+      $blocks[] = $currentBlock;
     }
     return $blocks;
   }

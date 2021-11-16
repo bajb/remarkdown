@@ -21,9 +21,22 @@ echo '<br/><br/><br/>';
 
 try
 {
-  //echo $markdown->parse(file_get_contents('demo.md'));
-  echo $markdown->parse(file_get_contents('remark.md'));
-  //echo $markdown->parse(file_get_contents('large.md'));
+  //$remark = file_get_contents('remark.md');
+  /*$demo = file_get_contents('demo.md');
+  $large = file_get_contents('large.md');
+
+  for($i = 0; $i < 10; $i++)
+  {
+    $markdown->parse($demo);
+    $markdown->parse($remark);
+    $markdown->parse($large);
+  }*/
+
+  //$source = file_get_contents('codespaces-logs.md');
+  $source = file_get_contents('remark.md');
+  echo '<div class="markdown">';
+  echo $markdown->parse($source);
+  echo '</div>';
 }
 catch(Exception $e)
 {
@@ -34,13 +47,23 @@ $exec = microtime(true) - $start;
 echo '<span class="time">' . round($exec * 1000, 5) . ' ms</span>';
 ?>
 <style>
+    html {
+        display: flex;
+        justify-content: center;
+    }
+
     body {
-        padding: 10px;
-        font-family: calibri, arial, sans-serif;
+        max-width: 1024px;
+        font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji;
         font-size: 16px;
+        line-height: 1.5;
+        word-wrap: break-word;
         font-weight: 300;
-        line-height: 1.325;
         color: rgba(0, 0, 0, 0.87);
+    }
+
+    .markdown {
+        padding: 10px 10px 30px 10px;
     }
 
     body img {
@@ -48,7 +71,38 @@ echo '<span class="time">' . round($exec * 1000, 5) . ' ms</span>';
     }
 
     h1, h2, h3, h4, h5, h6 {
-        margin: 5px 0;
+        margin: 24px 0 16px 0;
+        font-weight: 600;
+        line-height: 1.25;
+    }
+
+    h1 {
+        font-size: 2em;
+    }
+
+    }
+    h2 {
+        font-size: 1.25em;
+    }
+
+    h3 {
+        font-size: 1em;
+    }
+
+    h4 {
+        font-size: .875em;
+    }
+
+    h5, h6 {
+        font-size: .85em;
+    }
+
+    h6 {
+        color: #57606a;
+    }
+
+    h1, h2 {
+        border-bottom: 1px solid #d8dee4;
     }
 
     hr {
@@ -186,4 +240,78 @@ echo '<span class="time">' . round($exec * 1000, 5) . ' ms</span>';
         background: #fff;
         padding: 3px 6px;
     }
+
+    ul.tab-header {
+        display: flex;
+        border-bottom: 1px solid #d8dee4;
+        margin-bottom: 0;
+        padding: 0;
+    }
+
+    ul.tab-header li {
+        display: block;
+    }
+
+    ul.tab-header li a {
+        color: #000000;
+        padding: 10px;
+        text-align: center;
+        display: block;
+        border-bottom: 2px solid transparent;
+        text-decoration: none;
+    }
+
+
+    ul.tab-header li a:hover {
+        border-bottom-color: rgba(143, 143, 143, 0.2);
+    }
+
+    ul.tab-header li a.active {
+        border-bottom-color: #5c7ef6;
+        font-weight: 600;
+    }
+
+    .tabs {
+    }
+
+    .tabs .tab {
+        display: none;
+        padding: 10px;
+    }
+
+    .tabs .tab:first-of-type {
+        display: block;
+    }
 </style>
+<script>
+  document.addEventListener('click', function (e) {
+    var tab = e.target.getAttribute('data-tab-focus-key');
+    if(tab)
+    {
+      setActiveTab(tab);
+      e.preventDefault();
+    }
+  });
+
+  function setActiveTab(tabKey)
+  {
+    let tabs = document.querySelectorAll('.tabs .tab[data-tab-key=' + tabKey + ']');
+    tabs.forEach(function (tab) {
+      let tabGroup = tab.parentNode.parentNode;
+      tabGroup.querySelectorAll('.tab-header li a').forEach(function (tabHeader) {
+        if(tabHeader.getAttribute('data-tab-focus-key') === tabKey)
+        {
+          tabHeader.classList.add('active');
+        }
+        else
+        {
+          tabHeader.classList.remove('active');
+        }
+      });
+      tab.parentNode.querySelectorAll('.tab').forEach(function (otab) {
+        otab.style.display = 'none';
+      });
+      tab.style.display = 'block';
+    });
+  }
+</script>
