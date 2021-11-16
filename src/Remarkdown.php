@@ -21,6 +21,7 @@ use Packaged\Remarkdown\Rules\KeyboardKey;
 use Packaged\Remarkdown\Rules\LinkText;
 use Packaged\Remarkdown\Rules\MonospacedText;
 use Packaged\Remarkdown\Rules\RuleEngine;
+use Packaged\Remarkdown\Rules\TipText;
 use Packaged\Remarkdown\Rules\TypographicSymbolRule;
 use Packaged\Remarkdown\Rules\UnderlinedText;
 
@@ -54,6 +55,7 @@ class Remarkdown
     $engine->registerRule(new EmojiRule());
     $engine->registerRule(new KeyboardKey());
 
+    $engine->registerRule(new TipText());
     $engine->registerRule(new LinkText());
     $engine->registerRule(new BoldText());
     $engine->registerRule(new ItalicText());
