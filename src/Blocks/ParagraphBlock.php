@@ -19,7 +19,7 @@ class ParagraphBlock implements BlockInterface, BlockLineMatcher
 
   public function complete(BlockEngine $blockEngine, RuleEngine $ruleEngine): string
   {
-    return '<p>' . $ruleEngine->parse(implode("\n<br/>", $this->_lines)) . '</p>';
+    return '<p>' . $ruleEngine->parse(implode("<br/>", $this->_lines)) . '</p>';
   }
 
   public function match(string $line, bool $nested): ?BlockInterface

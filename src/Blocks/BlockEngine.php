@@ -58,7 +58,7 @@ class BlockEngine
       if($currentBlock !== null)
       {
         //Attempt to add the line to the current block
-        if($currentBlock->addNewLine($line))
+        if($currentBlock->addNewLine(trim($line)))
         {
           //line added, continue to the next
           continue;
@@ -75,7 +75,7 @@ class BlockEngine
         $currentBlock = $this->_detectBlock($line, $subBlock);
         if($currentBlock !== null)
         {
-          $currentBlock->addNewLine($line);
+          $currentBlock->addNewLine(trim($line));
         }
         else
         {
@@ -107,6 +107,11 @@ class BlockEngine
     }
 
     $line = ltrim($line, "\t\r\n\0\x0B ");
+
+    if(empty($line))
+    {
+      return null;
+    }
 
     $blockClass = $this->_startCodes[$line[0] . ($line[1] ?? ' ')] ?? null;
     if($blockClass !== null)

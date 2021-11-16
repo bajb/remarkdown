@@ -10,6 +10,7 @@ use Packaged\Remarkdown\Blocks\ParagraphBlock;
 use Packaged\Remarkdown\Blocks\TableBlock;
 use Packaged\Remarkdown\Blocks\TabsBlock;
 use Packaged\Remarkdown\Blocks\UnorderedListBlock;
+use Packaged\Remarkdown\Blocks\VideoBlock;
 use Packaged\Remarkdown\Rules\BoldText;
 use Packaged\Remarkdown\Rules\CheckboxRule;
 use Packaged\Remarkdown\Rules\DeletedText;
@@ -74,6 +75,7 @@ class Remarkdown
     $engine->registerBlock(new BlockQuote());
     $engine->registerBlock(new HeadingBlock());
     $engine->registerBlock(new HintBlock());
+    $engine->registerBlock(new VideoBlock());
     $engine->registerBlock(new TabsBlock());
     $engine->registerBlock(new ParagraphBlock());
 

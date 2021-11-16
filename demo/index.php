@@ -1,39 +1,26 @@
 <?php
 $start = microtime(true);
 
-use Packaged\Remarkdown\ORemarkdown;
 use Packaged\Remarkdown\Remarkdown;
 
 require "../vendor/autoload.php";
-//header("Refresh: 10; url=index.php?" . $_SERVER['QUERY_STRING']);
-if($_GET['v'] ?? '' == '1' /*rand(0, 1) == 1*/)
-{
-  echo 'Original ReMarkdown';
-  $markdown = new ORemarkdown();
-}
-else
-{
-  echo 'ReMarkdown';
-  $markdown = new Remarkdown();
-}
+$markdown = new Remarkdown();
+$source = $_POST['markdown'] ?? file_get_contents(($_GET['file'] ?? 'remark') . '.md');
+?>
 
-echo '<br/><br/><br/>';
+<form method="post" style="display:flex; flex-direction:column;flex-grow: 1; width: 50%;">
+  <textarea name="markdown" style="flex-grow:1;flex-basis: 100%;"><?= $source; ?></textarea>
+  <input type="submit" value="Render"
+         style="flex-grow: 1; flex-basis: 100px; padding: 10px; text-align: center; font-size: 20px;">
+</form>
+<br>
+<br>
+<br>
+
+<?php
 
 try
 {
-  //$remark = file_get_contents('remark.md');
-  /*$demo = file_get_contents('demo.md');
-  $large = file_get_contents('large.md');
-
-  for($i = 0; $i < 10; $i++)
-  {
-    $markdown->parse($demo);
-    $markdown->parse($remark);
-    $markdown->parse($large);
-  }*/
-
-  //$source = file_get_contents('codespaces-logs.md');
-  $source = file_get_contents('remark.md');
   echo '<div class="markdown">';
   echo $markdown->parse($source);
   echo '</div>';
@@ -53,7 +40,9 @@ echo '<span class="time">' . round($exec * 1000, 5) . ' ms</span>';
     }
 
     body {
-        max-width: 1024px;
+        display: flex;
+        flex-grow: 1;
+        flex-direction: row;
         font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji;
         font-size: 16px;
         line-height: 1.5;
@@ -63,7 +52,11 @@ echo '<span class="time">' . round($exec * 1000, 5) . ' ms</span>';
     }
 
     .markdown {
+        max-width: 1024px;
+        max-height: 100%;
+        overflow: auto;
         padding: 10px 10px 30px 10px;
+        margin: 20px;
     }
 
     body img {
@@ -102,6 +95,7 @@ echo '<span class="time">' . round($exec * 1000, 5) . ' ms</span>';
     }
 
     h1, h2 {
+        padding-bottom: 3px;
         border-bottom: 1px solid #d8dee4;
     }
 
@@ -151,11 +145,11 @@ echo '<span class="time">' . round($exec * 1000, 5) . ' ms</span>';
         position: fixed;
         top: 0;
         right: 0;
-        padding: 10px;
-        border: 1px solid blue;
-        background: white;
-        font-size: 18px;
+        padding: 2px 5px;
+        font-size: 12px;
         font-weight: bold;
+        background: #eee;
+        opacity: 0.5;
     }
 
     .monospace {
@@ -281,6 +275,23 @@ echo '<span class="time">' . round($exec * 1000, 5) . ' ms</span>';
 
     .tabs .tab:first-of-type {
         display: block;
+    }
+
+    .video-container {
+        position: relative;
+        overflow: hidden;
+        width: 100%;
+        padding-top: 56.25%; /* 16:9 Aspect Ratio (divide 9 by 16 = 0.5625) */
+    }
+
+    .video-container iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        width: 100%;
+        height: 100%;
     }
 </style>
 <script>
