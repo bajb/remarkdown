@@ -19,6 +19,7 @@ class HintBlock implements BlockInterface, BlockLineMatcher
 
   public function addNewLine(string $line)
   {
+    $line = BlockEngine::trimLine($line);
     if(empty($line) || ($this->_style !== '|' && !empty($this->_lines)))
     {
       return false;

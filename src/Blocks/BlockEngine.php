@@ -16,6 +16,11 @@ class BlockEngine
     $this->_engine = $engine;
   }
 
+  public static function trimLine($line)
+  {
+    return ltrim($line, "\t\r\n\0\x0B ");
+  }
+
   public function registerBlock(BlockInterface $block)
   {
     if($block instanceof BlockStartCodes)
@@ -58,7 +63,7 @@ class BlockEngine
       if($currentBlock !== null)
       {
         //Attempt to add the line to the current block
-        if($currentBlock->addNewLine(trim($line)))
+        if($currentBlock->addNewLine($line))
         {
           //line added, continue to the next
           continue;
@@ -75,7 +80,7 @@ class BlockEngine
         $currentBlock = $this->_detectBlock($line, $subBlock);
         if($currentBlock !== null)
         {
-          $currentBlock->addNewLine(trim($line));
+          $currentBlock->addNewLine($line);
         }
         else
         {

@@ -40,6 +40,7 @@ class TabBlock implements BlockInterface
 
   public function addNewLine(string $line)
   {
+    $line = BlockEngine::trimLine($line);
     if($line == '{ENDTAB}')
     {
       return false;

@@ -9,6 +9,7 @@ class Block implements BlockInterface
 
   public function addNewLine(string $line)
   {
+    $line = BlockEngine::trimLine($line);
     if(empty($line))
     {
       return false;

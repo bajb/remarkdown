@@ -11,6 +11,7 @@ class TableBlock implements BlockInterface, BlockStartCodes
 
   public function addNewLine(string $line)
   {
+    $line = BlockEngine::trimLine($line);
     if(empty($line) || $line[0] !== '|')
     {
       return false;

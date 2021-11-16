@@ -9,7 +9,7 @@ class BlockQuote implements BlockInterface, BlockStartCodes
 
   public function addNewLine(string $line)
   {
-    $line = ltrim($line, "\t\r\n\0\x0B ");
+    $line = BlockEngine::trimLine($line);
     if(empty($line) || $line[0] !== '>')
     {
       return false;

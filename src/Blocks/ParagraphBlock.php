@@ -9,6 +9,7 @@ class ParagraphBlock implements BlockInterface, BlockLineMatcher
 
   public function addNewLine(string $line)
   {
+    $line = BlockEngine::trimLine($line);
     if(empty($line))
     {
       return false;

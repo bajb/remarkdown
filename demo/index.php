@@ -290,6 +290,10 @@ echo '<span class="time">' . round($exec * 1000, 5) . ' ms</span>';
         width: 100%;
         height: 100%;
     }
+
+    .tooltip {
+        border-bottom: 1px dashed rgba(0, 0, 0, 0.1);
+    }
 </style>
 <script>
   document.addEventListener('click', function (e) {
