@@ -7,7 +7,7 @@ require "../vendor/autoload.php";
 $markdown = new Remarkdown();
 $source = $_POST['markdown'] ?? file_get_contents(($_GET['file'] ?? 'remark') . '.md');
 ?>
-<form method="post" style="display:flex; flex-direction:column;flex-grow: 1; width: 50%;">
+<form method="post" style="display:flex; flex-direction:column;flex-grow: 1; flex-basis: 50%;  max-width: 1024px;">
   <textarea name="markdown" style="flex-grow:1;flex-basis: 100%;"><?= $source; ?></textarea>
   <input type="submit" value="Render"
          style="flex-grow: 1; flex-basis: 100px; padding: 10px; text-align: center; font-size: 20px;">
@@ -18,7 +18,7 @@ $source = $_POST['markdown'] ?? file_get_contents(($_GET['file'] ?? 'remark') . 
 
 try
 {
-  echo '<div class="markdown">';
+  echo '<div class="markdown" style="flex-basis: 50%; ">';
   echo $markdown->parse($source);
   echo '</div>';
 }
