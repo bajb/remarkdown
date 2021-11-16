@@ -1,10 +1,10 @@
 <?php
 $start = microtime(true);
 
-use Packaged\Remarkdown\Remarkdown;
+use Packaged\Remarkd\Remarkd;
 
 require "../vendor/autoload.php";
-$markdown = new Remarkdown();
+$markdown = new Remarkd();
 $source = $_POST['markdown'] ?? file_get_contents(($_GET['file'] ?? 'remark') . '.md');
 ?>
 <form method="post" style="display:flex; flex-direction:column;flex-grow: 1; flex-basis: 50%;  max-width: 1024px;">

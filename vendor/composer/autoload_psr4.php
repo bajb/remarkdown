@@ -6,5 +6,5 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
-    'Packaged\\Remarkdown\\' => array($baseDir . '/src'),
+    'Packaged\\Remarkd\\' => array($vendorDir . '/packaged/remarkd/src'),
 );

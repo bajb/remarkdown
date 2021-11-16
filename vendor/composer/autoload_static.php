@@ -9,14 +9,14 @@ class ComposerStaticInita91403c75523c7359aceb16e7ae22b70
     public static $prefixLengthsPsr4 = array (
         'P' => 
         array (
-            'Packaged\\Remarkdown\\' => 20,
+            'Packaged\\Remarkd\\' => 17,
         ),
     );
 
     public static $prefixDirsPsr4 = array (
-        'Packaged\\Remarkdown\\' => 
+        'Packaged\\Remarkd\\' => 
         array (
-            0 => __DIR__ . '/../..' . '/src',
+            0 => __DIR__ . '/..' . '/packaged/remarkd/src',
         ),
     );
 

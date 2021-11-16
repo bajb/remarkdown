@@ -1,5 +1,37 @@
 {
-    "packages": [],
+    "packages": [
+        {
+            "name": "packaged/remarkd",
+            "version": "dev-main",
+            "version_normalized": "dev-main",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/packaged/remarkd.git",
+                "reference": "90857b51cb83803d606fb450cf7d88757b8be820"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/packaged/remarkd/zipball/90857b51cb83803d606fb450cf7d88757b8be820",
+                "reference": "90857b51cb83803d606fb450cf7d88757b8be820",
+                "shasum": ""
+            },
+            "time": "2021-11-16T15:49:42+00:00",
+            "default-branch": true,
+            "type": "library",
+            "installation-source": "dist",
+            "autoload": {
+                "psr-4": {
+                    "Packaged\\Remarkd\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "support": {
+                "issues": "https://github.com/packaged/remarkd/issues",
+                "source": "https://github.com/packaged/remarkd/tree/main"
+            },
+            "install-path": "../packaged/remarkd"
+        }
+    ],
     "dev": true,
     "dev-package-names": []
 }

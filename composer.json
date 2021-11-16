@@ -1,8 +1,6 @@
 {
-  "name": "packaged/remarkdown",
-  "autoload": {
-    "psr-4": {
-      "Packaged\\Remarkdown\\": "src"
-    }
+  "name": "bajb/remarkdown",
+  "require": {
+    "packaged/remarkd": "dev-main"
   }
 }
