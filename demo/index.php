@@ -165,6 +165,31 @@ echo '<span class="time">' . round($exec * 1000, 5) . ' ms</span>';
         padding: 0 4px;
     }
 
+    .hint-tip {
+        position: relative;
+        margin: 16px 0;
+        padding: 12px;
+        border: 1px solid #63b7de;
+        border-radius: 3px;
+        background: #e7f5f9;
+        padding-left: 50px;
+    }
+
+    .hint-tip:before {
+        content: '';
+        position: absolute;
+        background: url("./magic.svg") no-repeat center center;
+        top: 8px;
+        left: 10px;
+        width: 25px;
+        height: 100%;
+        max-height: 30px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+
     .hint-important .hint-caption, .hint-danger .hint-caption {
         color: #c0392b;
     }
@@ -293,6 +318,13 @@ echo '<span class="time">' . round($exec * 1000, 5) . ' ms</span>';
 
     .tooltip {
         border-bottom: 1px dashed rgba(0, 0, 0, 0.1);
+    }
+
+    .well {
+        border: 1px solid rgba(0, 0, 0, 0.04);
+        background: rgba(0, 0, 0, 0.03);
+        border-radius: 6px;
+        padding: 15px;
     }
 </style>
 <script>

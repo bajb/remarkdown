@@ -7,15 +7,15 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/packaged/remarkd.git",
-                "reference": "90857b51cb83803d606fb450cf7d88757b8be820"
+                "reference": "8c34c2cce23e0bb48dbe885e88b44ffb59866ab1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/packaged/remarkd/zipball/90857b51cb83803d606fb450cf7d88757b8be820",
-                "reference": "90857b51cb83803d606fb450cf7d88757b8be820",
+                "url": "https://api.github.com/repos/packaged/remarkd/zipball/8c34c2cce23e0bb48dbe885e88b44ffb59866ab1",
+                "reference": "8c34c2cce23e0bb48dbe885e88b44ffb59866ab1",
                 "shasum": ""
             },
-            "time": "2021-11-16T15:49:42+00:00",
+            "time": "2021-11-16T21:21:32+00:00",
             "default-branch": true,
             "type": "library",
             "installation-source": "dist",
